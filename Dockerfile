@@ -5,7 +5,7 @@ FROM openjdk:11-jdk-slim
 WORKDIR /app
 
 # Copia o arquivo JAR da aplicação para o diretório /app no container
-COPY target/my-application.jar app.jar
+COPY target/hydrofuture.jar app.jar
 
 # Define o comando a ser executado quando o container for iniciado
 CMD ["java", "-jar", "app.jar"]
