@@ -1,11 +1,20 @@
-# Use a imagem base do OpenJDK 11
-FROM openjdk:11-jdk-slim
+# Usar uma imagem base do Java
+FROM openjdk:11
 
-# Define o diretório de trabalho dentro do container
-WORKDIR /app
+# Copiar o arquivo pom.xml para o diretório de trabalho
+COPY pom.xml .
 
-# Copia o arquivo JAR da aplicação para o diretório /app no container
+# Baixar as dependências do Maven
+RUN mvn dependency:go-offline
+
+# Copiar o código fonte para o diretório de trabalho
+COPY src ./src
+
+# Compilar e empacotar o projeto
+RUN mvn package -DskipTests
+
+# Copiar o arquivo JAR para a imagem
 COPY target/hydrofuture.jar app.jar
 
-# Define o comando a ser executado quando o container for iniciado
+# Definir o comando de execução
 CMD ["java", "-jar", "app.jar"]
