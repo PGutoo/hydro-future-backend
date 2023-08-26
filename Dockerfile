@@ -15,7 +15,7 @@ COPY ${JAR_FILE} app.jar
 
 # RUN directive executes a command inside the Docker image during the build process.
 # Here, it creates an empty file named /app.jar using the bash command touch.
-RUN touch /app.jar
+#RUN touch /app.jar
 
 ENTRYPOINT directive allows you to configure a container that will run as an executable.
 # It specifies the command that should be executed when the Docker container starts.
